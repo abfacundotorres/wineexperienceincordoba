@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Experience in Córdoba — Private Wine Experiences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Master Token Variables */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        :root {
+            --color-bg-main: #fbf9f6;
+            --color-bg-subtle: #f3eee7;
+            --color-text-dark: #1e1917;
+            --color-text-muted: #625955;
+            --color-primary: #51131b;
+            --color-primary-hover: #2e080d;
+            --color-accent: #c49a55;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+        
+        body { font-family: var(--font-sans); background-color: var(--color-bg-main); color: var(--color-text-dark); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .quote-block { font-family: var(--font-serif); font-weight: 400; color: var(--color-text-dark); letter-spacing: 1px; }
+        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+        .section { padding: 120px 0; position: relative; }
+        .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 75px; align-items: center; }
+
+        header { padding: 26px 0; background-color: rgba(251, 249, 246, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(81, 19, 27, 0.04); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .brand-name { font-family: var(--font-serif); font-size: 1.05rem; letter-spacing: 5px; text-transform: uppercase; color: var(--color-primary); font-weight: 300; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 35px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-muted); font-weight: 500; }
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .hero-container { margin-top: 80px; padding: 40px 0 80px 0; text-align: center; }
+        .hero-image-frame { border: 1px solid rgba(81, 19, 27, 0.05); padding: 12px; background-color: #ffffff; display: inline-block; }
+        .hero-image-frame img { width: 100%; max-width: 1060px; height: auto; display: block; }
+
+        .btn { display: inline-block; background-color: var(--color-primary); color: #ffffff; padding: 18px 46px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; border: 1px solid var(--color-primary); cursor: pointer; transition: all 0.4s ease; }
+        .btn:hover { background-color: var(--color-primary-hover); }
+        .btn-outline { background-color: transparent; color: var(--color-primary); border: 1px solid var(--color-primary); }
+        .btn-outline:hover { background-color: var(--color-primary); color: #ffffff; }
+
+        .bg-subtle { background-color: var(--color-bg-subtle); }
+        .img-container img { width: 100%; height: auto; display: block; }
+        .meta-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; color: var(--color-accent); margin-bottom: 24px; display: block; }
+        .section h2 { font-size: 2.6rem; margin-bottom: 30px; }
+        .section p { font-size: 1rem; color: var(--color-text-muted); margin-bottom: 25px; font-weight: 300; }
+        .quote-block { font-size: 1.6rem; color: var(--color-primary); border-left: 2px solid var(--color-accent); padding: 5px 0 5px 32px; margin: 40px 0; }
+
+        .booking-section { background-color: #1a1513; color: #ffffff; text-align: center; padding: 130px 0; }
+        .booking-channels { max-width: 480px; margin: 0 auto 55px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .channel-card { background-color: #241e1c; border: 1px solid #362e2b; padding: 30px 20px; }
+        .channel-label { font-family: var(--font-serif); font-size: 0.85rem; color: var(--color-accent); margin-bottom: 10px; display: block; }
+        .booking-form { max-width: 540px; margin: 0 auto; text-align: left; }
+        .form-control { width: 100%; padding: 20px; background-color: #241e1c; border: 1px solid #362e2b; color: #ffffff; }
+
+        footer { background-color: #110d0c; color: #5c524f; padding: 50px 0; text-align: center; font-size: 0.75rem; }
+
+        /* --- OPTIMIZACIÓN MOBILE --- */
+        @media (max-width: 950px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            .section { padding: 60px 0; }
+            .container { padding: 0 20px; }
+            .section h2 { font-size: 1.8rem; }
+            .nav-links a { margin-left: 15px; font-size: 0.65rem; }
+            .brand-name { font-size: 0.75rem; letter-spacing: 2px; }
+            .btn { width: 100%; text-align: center; padding: 15px; }
+            .booking-channels { grid-template-columns: 1fr; }
+            .quote-block { font-size: 1.2rem; padding-left: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="brand-name">Wine Experience in Córdoba</div>
+            <nav class="nav-links">
+                <a href="#host">The Host</a>
+                <a href="#experience">The Experience</a>
+                <a href="#reserve">Inquire</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-container">
+        <div class="container">
+            <div class="hero-image-frame">
+                <img src="https://i.imgur.com/lLV8Awm.jpeg" alt="Wine Experience">
+            </div>
+            <div class="hero-action-space" style="margin-top: 40px;">
+                <a href="#host" class="btn">Discover More</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="host" class="section">
+        <div class="container grid-2">
+            <div class="img-container"><img src="https://i.imgur.com/dzHoHj8.jpeg" alt="Host"></div>
+            <div>
+                <span class="meta-category">Your Local Host</span>
+                <h2>Meet Ignacio</h2>
+                <p>I'm Ignacio (Nacho), a local host from Córdoba. I offer wine experiences in small wineries near Colonia Caroya.</p>
+                <div class="quote-block">"Relaxed, personal and authentic — not a typical tour."</div>
+                <p>I've hosted travelers from the US, UK and Europe, ensuring a premium, tailored perspective of our regional heritage.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section bg-subtle">
+        <div class="container grid-2">
+            <div style="order: 2;">
+                <span class="meta-category">The Vineyard Journey</span>
+                <h2>From Grapes to Glass</h2>
+                <p>You will learn about the winemaking process, from grapes to glass, and discover how local wines are produced.</p>
+                <a href="#reserve" class="btn btn-outline" style="margin-top: 15px;">Book Experience</a>
+            </div>
+            <div class="img-container" style="order: 1;"><img src="https://i.imgur.com/bkv4PjW.jpeg" alt="Winemaking"></div>
+        </div>
+    </section>
+
+    <section id="reserve" class="section booking-section">
+        <div class="container">
+            <h2>Request an Experience</h2>
+            <p>Spaces are strictly limited. Connect directly or send a bespoke inquiry.</p>
+            
+            <div class="booking-channels">
+                <a href="https://wa.me/5493525624389" target="_blank" class="channel-card">
+                    <span class="channel-label">WhatsApp</span>
+                    <span>+54 9 3525624389</span>
+                </a>
+                <a href="https://www.instagram.com/wineexperienceincordoba" target="_blank" class="channel-card">
+                    <span class="channel-label">Instagram</span>
+                    <span>@wineexperienceincordoba</span>
+                </a>
+            </div>
+            
+            <form id="ajax-booking-form" class="booking-form" action="https://formsubmit.co/ajax/cordobawineexperiences@gmail.com" method="POST">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Full Name</label>
+                    <input type="text" name="Name" class="form-control" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Email Address</label>
+                    <input type="email" name="Email" class="form-control" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Details</label>
+                    <textarea name="Message" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" id="submit-btn" class="btn" style="width: 100%;">Send Secure Inquiry</button>
+                <div id="form-message" style="margin-top: 20px;"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Wine Experience in Córdoba. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('ajax-booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const btn = document.getElementById('submit-btn');
+            btn.textContent = 'Sending...';
+            fetch(form.action, { method: 'POST', body: new FormData(form) })
+            .then(res => {
+                if (res.ok) {
+                    btn.textContent = 'Inquiry Sent';
+                    form.reset();
+                } else {
+                    btn.textContent = 'Error - Try WhatsApp';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
