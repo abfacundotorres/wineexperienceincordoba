@@ -3,188 +3,1228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wine Experience in Córdoba — Private Wine Experiences</title>
+    <title>Wine Experience in Córdoba — Private Cellar Tastings</title>
+    <meta name="description" content="An intimate wine tasting experience in a private cellar near Colonia Caroya, Córdoba. Guided by a local host. Paired with regional delicatessen.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset & Master Token Variables */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        
-        :root {
-            --color-bg-main: #fbf9f6;
-            --color-bg-subtle: #f3eee7;
-            --color-text-dark: #1e1917;
-            --color-text-muted: #625955;
-            --color-primary: #51131b;
-            --color-primary-hover: #2e080d;
-            --color-accent: #c49a55;
-            --font-serif: 'Cinzel', serif;
-            --font-sans: 'Montserrat', sans-serif;
-        }
-        
-        body { font-family: var(--font-sans); background-color: var(--color-bg-main); color: var(--color-text-dark); line-height: 1.75; -webkit-font-smoothing: antialiased; }
-        h1, h2, h3, .quote-block { font-family: var(--font-serif); font-weight: 400; color: var(--color-text-dark); letter-spacing: 1px; }
-        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
 
-        .container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
-        .section { padding: 120px 0; position: relative; }
-        .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 75px; align-items: center; }
+/* ══════════════════════════════════════════════════
+   RESET & DESIGN TOKENS
+══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-        header { padding: 26px 0; background-color: rgba(251, 249, 246, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(81, 19, 27, 0.04); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .brand-name { font-family: var(--font-serif); font-size: 1.05rem; letter-spacing: 5px; text-transform: uppercase; color: var(--color-primary); font-weight: 300; }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { margin-left: 35px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-muted); font-weight: 500; }
-        .nav-links a:hover { color: var(--color-primary); }
+:root {
+    /* Palette */
+    --cream:        #faf7f2;
+    --cream-mid:    #f4ede1;
+    --cream-deep:   #ede0ce;
+    --parchment:    #ddd0ba;
+    --burgundy:     #4a1020;
+    --burgundy-dk:  #2c0912;
+    --burgundy-lt:  #6b1e30;
+    --gold:         #b8935a;
+    --gold-lt:      #d4b07a;
+    --gold-faint:   rgba(184,147,90,0.18);
+    --ink:          #1a1310;
+    --ink-muted:    #5a4e49;
+    --ink-faint:    #9a8e89;
+    --white:        #ffffff;
 
-        .hero-container { margin-top: 80px; padding: 40px 0 80px 0; text-align: center; }
-        .hero-image-frame { border: 1px solid rgba(81, 19, 27, 0.05); padding: 12px; background-color: #ffffff; display: inline-block; }
-        .hero-image-frame img { width: 100%; max-width: 1060px; height: auto; display: block; }
+    /* Type */
+    --display: 'Cinzel', serif;
+    --serif:   'Cormorant Garamond', serif;
+    --sans:    'Montserrat', sans-serif;
 
-        .btn { display: inline-block; background-color: var(--color-primary); color: #ffffff; padding: 18px 46px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; border: 1px solid var(--color-primary); cursor: pointer; transition: all 0.4s ease; }
-        .btn:hover { background-color: var(--color-primary-hover); }
-        .btn-outline { background-color: transparent; color: var(--color-primary); border: 1px solid var(--color-primary); }
-        .btn-outline:hover { background-color: var(--color-primary); color: #ffffff; }
+    /* Motion */
+    --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-snappy: cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-        .bg-subtle { background-color: var(--color-bg-subtle); }
-        .img-container img { width: 100%; height: auto; display: block; }
-        .meta-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; color: var(--color-accent); margin-bottom: 24px; display: block; }
-        .section h2 { font-size: 2.6rem; margin-bottom: 30px; }
-        .section p { font-size: 1rem; color: var(--color-text-muted); margin-bottom: 25px; font-weight: 300; }
-        .quote-block { font-size: 1.6rem; color: var(--color-primary); border-left: 2px solid var(--color-accent); padding: 5px 0 5px 32px; margin: 40px 0; }
+body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
 
-        .booking-section { background-color: #1a1513; color: #ffffff; text-align: center; padding: 130px 0; }
-        .booking-channels { max-width: 480px; margin: 0 auto 55px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .channel-card { background-color: #241e1c; border: 1px solid #362e2b; padding: 30px 20px; }
-        .channel-label { font-family: var(--font-serif); font-size: 0.85rem; color: var(--color-accent); margin-bottom: 10px; display: block; }
-        .booking-form { max-width: 540px; margin: 0 auto; text-align: left; }
-        .form-control { width: 100%; padding: 20px; background-color: #241e1c; border: 1px solid #362e2b; color: #ffffff; }
+img { display: block; width: 100%; height: auto; }
+a   { text-decoration: none; color: inherit; }
 
-        footer { background-color: #110d0c; color: #5c524f; padding: 50px 0; text-align: center; font-size: 0.75rem; }
+/* Grain texture — atmosphere without weight */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.026;
+    pointer-events: none;
+    z-index: 9999;
+}
 
-        /* --- OPTIMIZACIÓN MOBILE --- */
-        @media (max-width: 950px) {
-            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
-            .section { padding: 60px 0; }
-            .container { padding: 0 20px; }
-            .section h2 { font-size: 1.8rem; }
-            .nav-links a { margin-left: 15px; font-size: 0.65rem; }
-            .brand-name { font-size: 0.75rem; letter-spacing: 2px; }
-            .btn { width: 100%; text-align: center; padding: 15px; }
-            .booking-channels { grid-template-columns: 1fr; }
-            .quote-block { font-size: 1.2rem; padding-left: 20px; }
-        }
+/* ══════════════════════════════════════════════════
+   LAYOUT UTILITIES
+══════════════════════════════════════════════════ */
+.container { max-width: 1180px; margin: 0 auto; padding: 0 52px; }
+
+/* Ornamental divider */
+.ornament {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+.ornament::before,
+.ornament::after {
+    content: '';
+    flex: 1;
+    max-width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.ornament span {
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: var(--gold);
+    white-space: nowrap;
+}
+.ornament--center { justify-content: center; }
+.ornament--center::before,
+.ornament--center::after { max-width: 80px; }
+
+/* Horizontal rule */
+.hr-gold {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0;
+}
+
+/* Scroll reveal */
+.r {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.95s var(--ease-out), transform 0.95s var(--ease-out);
+}
+.r.on { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.10s; }
+.d2 { transition-delay: 0.22s; }
+.d3 { transition-delay: 0.36s; }
+.d4 { transition-delay: 0.50s; }
+.d5 { transition-delay: 0.64s; }
+
+/* ══════════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════════ */
+#hdr {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 74px;
+    padding: 0 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.55s ease, box-shadow 0.55s ease;
+}
+#hdr.on {
+    background: rgba(250,247,242,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 rgba(74,16,32,0.07);
+}
+
+.brand {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(0.52rem, 1.8vw, 0.76rem);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.55s ease;
+}
+#hdr.on .brand { color: var(--burgundy); }
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 44px);
+}
+nav a {
+    font-family: var(--sans);
+    font-size: 0.58rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.68);
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 3px;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.38s var(--ease-out);
+}
+nav a:hover { color: var(--white); }
+nav a:hover::after { width: 100%; }
+#hdr.on nav a { color: var(--ink-muted); }
+#hdr.on nav a:hover { color: var(--burgundy); }
+
+/* Mobile hamburger */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+}
+.nav-toggle span {
+    display: block;
+    width: 22px; height: 1px;
+    background: var(--white);
+    transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+}
+#hdr.on .nav-toggle span { background: var(--burgundy); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.nav-drawer {
+    display: none;
+    position: fixed;
+    top: 74px; left: 0; right: 0;
+    background: rgba(250,247,242,0.99);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--parchment);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    z-index: 199;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.45s var(--ease-out);
+}
+.nav-drawer.open { max-height: 300px; }
+.nav-drawer a {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--ink-muted);
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--cream-deep);
+    transition: color 0.25s ease, background 0.25s ease;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover { color: var(--burgundy); background: var(--cream-mid); }
+
+/* ══════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════ */
+.hero {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+    max-height: 1000px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 100px;
+}
+
+.hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.07);
+    animation: zoomIn 16s var(--ease-out) forwards;
+}
+@keyframes zoomIn { to { transform: scale(1); } }
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top,  rgba(18,6,3,0.88) 0%,  rgba(18,6,3,0.35) 45%, rgba(18,6,3,0.08) 100%),
+        linear-gradient(to right, rgba(18,6,3,0.30) 0%, transparent 62%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    animation: heroUp 1.5s 0.2s var(--ease-out) both;
+}
+@keyframes heroUp {
+    from { opacity: 0; transform: translateY(48px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.hero-region {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    color: var(--gold-lt);
+    margin-bottom: 24px;
+}
+.hero-region::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+
+.hero h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(2.3rem, 6.5vw, 4.6rem);
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: 2px;
+    margin-bottom: 26px;
+}
+
+.hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 52px;
+    max-width: 480px;
+}
+
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 19px 42px;
+    border: 1px solid rgba(184,147,90,0.5);
+    color: var(--white);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s ease, border-color 0.4s ease;
+    min-height: 56px;
+}
+.cta-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.42s var(--ease-out);
+    z-index: 0;
+}
+.cta-primary span, .cta-primary svg { position: relative; z-index: 1; }
+.cta-primary:hover { color: var(--ink); border-color: var(--gold); }
+.cta-primary:hover::before { transform: scaleX(1); }
+.cta-primary svg {
+    width: 14px; height: 14px;
+    stroke: currentColor; fill: none;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.cta-primary:hover svg { transform: translateX(5px); }
+
+/* Scroll indicator */
+.scroll-ind {
+    position: absolute;
+    bottom: 40px; right: 52px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: heroUp 1.5s 1.1s var(--ease-out) both;
+}
+.scroll-ind span {
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.32);
+    writing-mode: vertical-lr;
+}
+.scroll-line {
+    width: 1px; height: 54px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
+    animation: pulse 2.8s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.22} 50%{opacity:.85} }
+
+/* ══════════════════════════════════════════════════
+   MANIFESTO BAND
+══════════════════════════════════════════════════ */
+.manifesto {
+    background: var(--burgundy);
+    padding: 72px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.manifesto::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(184,147,90,0.12) 0%, transparent 60%);
+}
+.manifesto blockquote {
+    position: relative;
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 3vw, 1.85rem);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.86);
+    line-height: 1.75;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.manifesto blockquote em {
+    font-style: normal;
+    color: var(--gold-lt);
+}
+
+/* ══════════════════════════════════════════════════
+   HOST SECTION
+══════════════════════════════════════════════════ */
+#host {
+    padding: 140px 0;
+    background: var(--cream);
+}
+
+.host-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.host-visual {
+    position: relative;
+    overflow: hidden;
+}
+.host-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.1s var(--ease-out);
+}
+.host-visual:hover img { transform: scale(1.04); }
+
+/* Offset gold frame */
+.host-visual::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px;
+    right: -30px; bottom: -30px;
+    border: 1px solid var(--gold);
+    opacity: 0.2;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+.host-visual:hover::after { opacity: 0.38; }
+
+.host-copy {
+    background: var(--cream-mid);
+    padding: 84px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: none;
+}
+
+.host-copy h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    color: var(--burgundy);
+    line-height: 1.12;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+}
+
+.host-copy p {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.88;
+    margin-bottom: 20px;
+}
+
+.pull-quote {
+    border-left: 2px solid var(--gold);
+    padding: 10px 0 10px 30px;
+    margin: 38px 0;
+}
+.pull-quote p {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 2.4vw, 1.55rem);
+    font-style: italic;
+    color: var(--burgundy);
+    line-height: 1.52;
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   CELLAR SECTION
+══════════════════════════════════════════════════ */
+#cellar {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+}
+#cellar .top-rule,
+#cellar .bot-rule { 
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,147,90,0.35), transparent);
+}
+
+.cellar-inner {
+    padding: 130px 0;
+}
+
+.cellar-header {
+    text-align: center;
+    margin-bottom: 90px;
+}
+.cellar-header .ornament { justify-content: center; }
+.cellar-header .ornament span { color: rgba(184,147,90,0.6); }
+.cellar-header h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 4.5vw, 3.4rem);
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+.cellar-header p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.42);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Two-column featured layout */
+.cellar-featured {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3px;
+    margin-bottom: 3px;
+}
+
+.cellar-img {
+    position: relative;
+    overflow: hidden;
+}
+.cellar-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.95s var(--ease-out);
+}
+.cellar-img:hover img { transform: scale(1.05); }
+
+.cellar-img-tall img { min-height: 560px; }
+.cellar-img-sq   img { min-height: 560px; object-position: center 40%; }
+
+/* Caption on hover */
+.cellar-img .cap {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,6,3,0.78) 0%, transparent 55%);
+    display: flex;
+    align-items: flex-end;
+    padding: 36px 32px;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+.cellar-img:hover .cap { opacity: 1; }
+.cap-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.82);
+}
+
+/* Three-column strip */
+.cellar-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+.cellar-strip .cellar-img img { min-height: 280px; object-position: center; }
+
+/* ══════════════════════════════════════════════════
+   DELICATESSEN SECTION
+══════════════════════════════════════════════════ */
+#delicatessen {
+    padding: 140px 0;
+    background: var(--cream-deep);
+    position: relative;
+}
+
+.deli-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.deli-copy .ornament { }
+.deli-copy h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    color: var(--burgundy);
+    line-height: 1.12;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+.deli-copy p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.88;
+    margin-bottom: 20px;
+}
+
+.deli-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+.deli-img {
+    overflow: hidden;
+    position: relative;
+}
+.deli-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s var(--ease-out);
+}
+.deli-img:hover img { transform: scale(1.06); }
+.deli-img--large {
+    grid-column: 1 / -1;
+}
+.deli-img--large img { max-height: 340px; object-position: center 60%; }
+.deli-img--sm img { max-height: 200px; }
+
+/* ══════════════════════════════════════════════════
+   RESERVE SECTION
+══════════════════════════════════════════════════ */
+#reserve {
+    padding: 140px 0;
+    background: var(--cream);
+}
+
+.reserve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 110px;
+    align-items: start;
+}
+
+.res-copy h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    color: var(--burgundy);
+    line-height: 1.12;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+}
+.res-copy > p {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.88;
+    margin-bottom: 48px;
+}
+
+.contact-list { display: flex; flex-direction: column; gap: 12px; }
+
+.cc {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 24px;
+    background: var(--cream-mid);
+    border: 1px solid var(--parchment);
+    transition: transform 0.35s var(--ease-out), border-color 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+.cc::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.38s var(--ease-out);
+}
+.cc:hover { transform: translateX(6px); border-color: rgba(184,147,90,0.3); }
+.cc:hover::before { transform: scaleY(1); }
+
+.cc-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--cream-deep);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.cc-icon svg { width: 19px; height: 19px; stroke: var(--burgundy); fill: none; }
+.cc-lbl {
+    font-family: var(--sans);
+    font-size: 0.54rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+.cc-val {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--ink);
+}
+
+/* Form */
+.booking-form { display: flex; flex-direction: column; gap: 26px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.ff { display: flex; flex-direction: column; gap: 10px; }
+
+.ff label {
+    font-family: var(--sans);
+    font-size: 0.54rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--ink-faint);
+    font-weight: 400;
+}
+
+.ff input,
+.ff textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--parchment);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-weight: 300;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none;
+    border-radius: 0;
+    width: 100%;
+}
+.ff input:focus,
+.ff textarea:focus { border-bottom-color: var(--gold); }
+.ff input::placeholder,
+.ff textarea::placeholder { color: var(--ink-faint); font-style: italic; }
+.ff textarea { resize: vertical; min-height: 108px; }
+
+#form-msg {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    min-height: 24px;
+    transition: color 0.3s ease;
+}
+#form-msg.ok  { color: #4e7a5e; }
+#form-msg.err { color: #8f3535; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--sans);
+    font-size: 0.58rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 18px 44px;
+    min-height: 56px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.38s var(--ease-out);
+    line-height: 1;
+}
+.btn svg {
+    width: 13px; height: 13px;
+    stroke: currentColor; fill: none;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.btn:hover svg { transform: translateX(4px); }
+
+.btn--solid { background: var(--burgundy); color: var(--white); border: 1px solid var(--burgundy); }
+.btn--solid:hover { background: var(--burgundy-dk); border-color: var(--burgundy-dk); }
+
+.btn--ghost-dk {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(184,147,90,0.45);
+}
+.btn--ghost-dk:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+/* ══════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════ */
+footer {
+    background: var(--burgundy-dk);
+    padding: 56px 0;
+    text-align: center;
+}
+.footer-brand {
+    display: block;
+    font-family: var(--display);
+    font-size: 0.65rem;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: rgba(184,147,90,0.38);
+    margin-bottom: 20px;
+}
+footer p {
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — TABLET 900px
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .container { padding: 0 32px; }
+
+    .host-wrap { grid-template-columns: 1fr; }
+    .host-visual::after { display: none; }
+    .host-visual img { min-height: 360px; max-height: 440px; }
+    .host-copy { padding: 56px 32px; }
+
+    .cellar-featured { grid-template-columns: 1fr; }
+    .cellar-img-tall img,
+    .cellar-img-sq   img { min-height: 340px; }
+
+    .deli-grid { grid-template-columns: 1fr; gap: 48px; }
+
+    .reserve-grid { grid-template-columns: 1fr; gap: 60px; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — MOBILE 680px
+══════════════════════════════════════════════════ */
+@media (max-width: 680px) {
+    .container { padding: 0 20px; }
+
+    /* Header */
+    #hdr         { padding: 0 20px; height: 62px; }
+    .brand       { font-size: 0.5rem; letter-spacing: 2px; }
+    nav          { display: none; }
+    .nav-toggle  { display: flex; }
+    .nav-drawer  { display: flex; top: 62px; }
+
+    /* Hero */
+    .hero { padding-bottom: 64px; min-height: 580px; }
+    .hero-content { padding: 0 20px; max-width: 100%; }
+    .hero h1 { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: 1px; }
+    .hero-tagline { font-size: 1rem; margin-bottom: 38px; }
+    .scroll-ind { display: none; }
+
+    /* Manifesto */
+    .manifesto { padding: 52px 0; }
+
+    /* Host */
+    #host { padding: 80px 0; }
+    .host-copy { padding: 44px 20px; }
+
+    /* Cellar */
+    .cellar-inner { padding: 80px 0; }
+    .cellar-header { margin-bottom: 52px; }
+    .cellar-strip { grid-template-columns: 1fr; }
+    .cellar-strip .cellar-img img { min-height: 220px; }
+    .cellar-img-tall img,
+    .cellar-img-sq   img { min-height: 260px; }
+
+    /* Delicatessen */
+    #delicatessen { padding: 80px 0; }
+    .deli-images { grid-template-columns: 1fr; }
+    .deli-img--large { grid-column: auto; }
+    .deli-img--large img { max-height: 260px; }
+    .deli-img--sm img { max-height: 220px; }
+
+    /* Reserve */
+    #reserve { padding: 80px 0; }
+
+    /* iOS: prevent zoom on input focus */
+    .ff input, .ff textarea { font-size: 1rem; }
+
+    /* Buttons */
+    .btn { width: 100%; padding: 18px 20px; }
+    .cta-primary { width: 100%; justify-content: center; }
+}
+
+/* Extra small 380px */
+@media (max-width: 380px) {
+    .brand { font-size: 0.44rem; letter-spacing: 1px; }
+}
+
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <div class="brand-name">Wine Experience in Córdoba</div>
-            <nav class="nav-links">
-                <a href="#host">The Host</a>
-                <a href="#experience">The Experience</a>
-                <a href="#reserve">Inquire</a>
-            </nav>
-        </div>
-    </header>
+<!-- ════════ HEADER ════════ -->
+<header id="hdr">
+    <div class="brand">Wine Experience in Córdoba</div>
+    <nav id="main-nav">
+        <a href="#host">The Host</a>
+        <a href="#cellar">The Cellar</a>
+        <a href="#delicatessen">Delicatessen</a>
+        <a href="#reserve">Inquire</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
 
-    <div class="hero-container">
-        <div class="container">
-            <div class="hero-image-frame">
-                <img src="https://i.imgur.com/lLV8Awm.jpeg" alt="Wine Experience">
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+    <a href="#host"         onclick="closeNav()">The Host</a>
+    <a href="#cellar"       onclick="closeNav()">The Cellar</a>
+    <a href="#delicatessen" onclick="closeNav()">Delicatessen</a>
+    <a href="#reserve"      onclick="closeNav()">Inquire</a>
+</div>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+    <img class="hero-img"
+         src="https://i.imgur.com/tb9ED0y.jpeg"
+         alt="Interior de la bodega — Wine Experience in Córdoba"
+         loading="eager" fetchpriority="high">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-region">Colonia Caroya · Córdoba · Argentina</div>
+            <h1>An Intimate<br>Cellar Experience</h1>
+            <p class="hero-tagline">A private wine tasting inside a working cellar,<br>paired with regional delicatessen.</p>
+            <a href="#reserve" class="cta-primary">
+                <span>Reserve Your Experience</span>
+                <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="scroll-ind">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ════════ MANIFESTO ════════ -->
+<div class="manifesto">
+    <div class="container">
+        <blockquote class="r">
+            Not a tour. Not a tasting room.<br>
+            A <em>genuine encounter</em> with the craft, the barrel,<br>and the people behind every bottle.
+        </blockquote>
+    </div>
+</div>
+
+<!-- ════════ HOST ════════ -->
+<section id="host">
+    <div class="host-wrap">
+        <div class="host-visual r">
+            <img src="https://i.imgur.com/tb9ED0y.jpeg"
+                 alt="Ignacio — your host at the cellar"
+                 loading="lazy">
+            <div class="cap"><div class="cap-text">Inside the cellar, Colonia Caroya</div></div>
+        </div>
+        <div class="host-copy">
+            <div class="ornament r"><span>Your Host</span></div>
+            <h2 class="r d1">Meet Ignacio</h2>
+            <div class="pull-quote r d2">
+                <p>"Relaxed, personal and authentic — not a typical tasting."</p>
             </div>
-            <div class="hero-action-space" style="margin-top: 40px;">
-                <a href="#host" class="btn">Discover More</a>
+            <p class="r d3">I'm Ignacio (Nacho), a local from Córdoba with a deep connection to the winemaking traditions of the Colonia Caroya region. I open the doors of a working cellar for small, private groups — offering a guided tasting that feels nothing like a commercial experience.</p>
+            <p class="r d4">I've hosted travellers from the US, UK and across Europe. Every visit is tailored to your group, your pace, and your curiosity.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ════════ CELLAR ════════ -->
+<section id="cellar">
+    <div class="top-rule"></div>
+    <div class="cellar-inner">
+        <div class="container">
+            <div class="cellar-header">
+                <div class="ornament ornament--center r"><span>The Setting</span></div>
+                <h2 class="r d1">Inside the Cellar</h2>
+                <p class="r d2">A working bodega, not a tourist attraction. Stone walls, oak barrels, and the quiet of a space where wine is still made by hand.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="cellar-featured r">
+                <div class="cellar-img cellar-img-tall">
+                    <img src="https://i.imgur.com/tb9ED0y.jpeg"
+                         alt="Cellar interior" loading="lazy">
+                    <div class="cap"><div class="cap-text">The cellar floor — where the experience begins</div></div>
+                </div>
+                <div class="cellar-img cellar-img-sq">
+                    <img src="https://i.imgur.com/01vWrBS.jpeg"
+                         alt="Oak barrels ageing" loading="lazy">
+                    <div class="cap"><div class="cap-text">Barrels ageing in silence</div></div>
+                </div>
+            </div>
+            <div class="cellar-strip r d1">
+                <div class="cellar-img">
+                    <img src="https://i.imgur.com/01vWrBS.jpeg"
+                         alt="Barrels detail" loading="lazy">
+                </div>
+                <div class="cellar-img">
+                    <img src="https://i.imgur.com/tb9ED0y.jpeg"
+                         alt="Cellar atmosphere" loading="lazy">
+                </div>
+                <div class="cellar-img">
+                    <img src="https://i.imgur.com/01vWrBS.jpeg"
+                         alt="Wine in production" loading="lazy">
+                </div>
             </div>
         </div>
     </div>
+    <div class="bot-rule"></div>
+</section>
 
-    <section id="host" class="section">
-        <div class="container grid-2">
-            <div class="img-container"><img src="https://i.imgur.com/dzHoHj8.jpeg" alt="Host"></div>
-            <div>
-                <span class="meta-category">Your Local Host</span>
-                <h2>Meet Ignacio</h2>
-                <p>I'm Ignacio (Nacho), a local host from Córdoba. I offer wine experiences in small wineries near Colonia Caroya.</p>
-                <div class="quote-block">"Relaxed, personal and authentic — not a typical tour."</div>
-                <p>I've hosted travelers from the US, UK and Europe, ensuring a premium, tailored perspective of our regional heritage.</p>
+<!-- ════════ DELICATESSEN ════════ -->
+<section id="delicatessen">
+    <div class="container">
+        <div class="deli-grid">
+            <div class="deli-copy">
+                <div class="ornament r"><span>The Pairing</span></div>
+                <h2 class="r d1">Regional Delicatessen</h2>
+                <p class="r d2">Every tasting is accompanied by a carefully selected spread of regional delicatessen — cured meats, artisan cheeses, and local preserves chosen to complement each wine.</p>
+                <p class="r d3">Nothing mass-produced. Everything sourced from the surrounding area, reflecting the same sense of place as the wines themselves.</p>
+            </div>
+            <div class="deli-images">
+                <div class="deli-img deli-img--large r">
+                    <img src="https://i.imgur.com/AD0dMXR.jpeg"
+                         alt="Regional delicatessen spread" loading="lazy">
+                </div>
+                <div class="deli-img deli-img--sm r d1">
+                    <img src="https://i.imgur.com/CRsEwq8.jpeg"
+                         alt="Artisan food pairing" loading="lazy">
+                </div>
+                <div class="deli-img deli-img--sm r d2">
+                    <img src="https://i.imgur.com/es4jO3v.jpeg"
+                         alt="Local produce" loading="lazy">
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="experience" class="section bg-subtle">
-        <div class="container grid-2">
-            <div style="order: 2;">
-                <span class="meta-category">The Vineyard Journey</span>
-                <h2>From Grapes to Glass</h2>
-                <p>You will learn about the winemaking process, from grapes to glass, and discover how local wines are produced.</p>
-                <a href="#reserve" class="btn btn-outline" style="margin-top: 15px;">Book Experience</a>
+<!-- ════════ RESERVE ════════ -->
+<section id="reserve">
+    <div class="container">
+        <div class="reserve-grid">
+
+            <div class="res-copy">
+                <div class="ornament r"><span>Reserve</span></div>
+                <h2 class="r d1">Request an Experience</h2>
+                <p class="r d2">Spaces are strictly limited to ensure every group receives Ignacio's full attention. Reach out directly or use the form — we respond within 24 hours.</p>
+                <div class="contact-list r d3">
+                    <a href="https://wa.me/5493525624389" target="_blank" rel="noopener" class="cc">
+                        <div class="cc-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        </div>
+                        <div>
+                            <div class="cc-lbl">WhatsApp</div>
+                            <div class="cc-val">+54 9 3525 624389</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/wineexperienceincordoba" target="_blank" rel="noopener" class="cc">
+                        <div class="cc-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </div>
+                        <div>
+                            <div class="cc-lbl">Instagram</div>
+                            <div class="cc-val">@wineexperienceincordoba</div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="img-container" style="order: 1;"><img src="https://i.imgur.com/bkv4PjW.jpeg" alt="Winemaking"></div>
-        </div>
-    </section>
 
-    <section id="reserve" class="section booking-section">
-        <div class="container">
-            <h2>Request an Experience</h2>
-            <p>Spaces are strictly limited. Connect directly or send a bespoke inquiry.</p>
-            
-            <div class="booking-channels">
-                <a href="https://wa.me/5493525624389" target="_blank" class="channel-card">
-                    <span class="channel-label">WhatsApp</span>
-                    <span>+54 9 3525624389</span>
-                </a>
-                <a href="https://www.instagram.com/wineexperienceincordoba" target="_blank" class="channel-card">
-                    <span class="channel-label">Instagram</span>
-                    <span>@wineexperienceincordoba</span>
-                </a>
+            <div class="r d2">
+                <form id="booking-form" class="booking-form"
+                      action="https://formsubmit.co/ajax/cordobawineexperiences@gmail.com"
+                      method="POST">
+                    <input type="hidden" name="_subject"  value="New inquiry — Wine Experience in Córdoba">
+                    <input type="hidden" name="_captcha"  value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text"   name="_honey"    style="display:none" tabindex="-1" autocomplete="off">
+
+                    <div class="form-row">
+                        <div class="ff">
+                            <label for="f-name">Full Name</label>
+                            <input id="f-name" type="text" name="Name"
+                                   placeholder="Your name"
+                                   autocomplete="name" required>
+                        </div>
+                        <div class="ff">
+                            <label for="f-email">Email</label>
+                            <input id="f-email" type="email" name="Email"
+                                   placeholder="you@example.com"
+                                   inputmode="email" autocomplete="email" required>
+                        </div>
+                    </div>
+                    <div class="ff">
+                        <label for="f-date">Preferred Date</label>
+                        <input id="f-date" type="text" name="Date"
+                               placeholder="e.g. late July, flexible…">
+                    </div>
+                    <div class="ff">
+                        <label for="f-msg">Tell us about your group</label>
+                        <textarea id="f-msg" name="Message" rows="4"
+                                  placeholder="Number of guests, dietary notes, questions…"
+                                  required></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn btn--solid">
+                        Send Inquiry
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                    <div id="form-msg" role="alert" aria-live="polite"></div>
+                </form>
             </div>
-            
-            <form id="ajax-booking-form" class="booking-form" action="https://formsubmit.co/ajax/cordobawineexperiences@gmail.com" method="POST">
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>Full Name</label>
-                    <input type="text" name="Name" class="form-control" required>
-                </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>Email Address</label>
-                    <input type="email" name="Email" class="form-control" required>
-                </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>Details</label>
-                    <textarea name="Message" class="form-control" rows="4" required></textarea>
-                </div>
-                <button type="submit" id="submit-btn" class="btn" style="width: 100%;">Send Secure Inquiry</button>
-                <div id="form-message" style="margin-top: 20px;"></div>
-            </form>
-        </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Wine Experience in Córdoba. All rights reserved.</p>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        document.getElementById('ajax-booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = this;
-            const btn = document.getElementById('submit-btn');
-            btn.textContent = 'Sending...';
-            fetch(form.action, { method: 'POST', body: new FormData(form) })
-            .then(res => {
-                if (res.ok) {
-                    btn.textContent = 'Inquiry Sent';
-                    form.reset();
-                } else {
-                    btn.textContent = 'Error - Try WhatsApp';
-                }
-            });
+<!-- ════════ FOOTER ════════ -->
+<footer>
+    <div class="container">
+        <span class="footer-brand">Wine Experience in Córdoba</span>
+        <p>&copy; 2026 · All rights reserved · Colonia Caroya, Córdoba, Argentina</p>
+    </div>
+</footer>
+
+<script>
+(function () {
+
+    /* ── Header scroll state ── */
+    const hdr  = document.getElementById('hdr');
+    const sync = () => hdr.classList.toggle('on', window.scrollY > 50);
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
+
+    /* ── Mobile nav ── */
+    const toggle = document.getElementById('nav-toggle');
+    const drawer = document.getElementById('nav-drawer');
+
+    window.closeNav = function () {
+        toggle.classList.remove('open');
+        drawer.classList.remove('open');
+    };
+
+    toggle.addEventListener('click', () => {
+        const open = toggle.classList.toggle('open');
+        drawer.classList.toggle('open', open);
+    });
+
+    /* Close drawer on outside click */
+    document.addEventListener('click', e => {
+        if (!hdr.contains(e.target) && !drawer.contains(e.target)) closeNav();
+    });
+
+    /* ── Scroll reveal ── */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
         });
-    </script>
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+    /* ── Form ── */
+    const form   = document.getElementById('booking-form');
+    const btn    = document.getElementById('submit-btn');
+    const msgBox = document.getElementById('form-msg');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const orig   = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Sending…';
+        msgBox.textContent = '';
+        msgBox.className   = '';
+
+        try {
+            const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+            if (res.ok) {
+                btn.innerHTML      = 'Sent ✓';
+                msgBox.textContent = "Thank you — we'll be in touch within 24 hours.";
+                msgBox.className   = 'ok';
+                form.reset();
+            } else {
+                throw new Error('HTTP ' + res.status);
+            }
+        } catch (err) {
+            btn.disabled   = false;
+            btn.innerHTML  = orig;
+            msgBox.textContent = 'Something went wrong. Please try WhatsApp or Instagram directly.';
+            msgBox.className   = 'err';
+            console.error('[form]', err);
+        }
+    });
+
+})();
+</script>
 </body>
 </html>
