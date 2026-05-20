@@ -1108,12 +1108,11 @@ footer p {
             <div class="r d2">
                 <p class="form-intro">Fill in the form below and Ignacio will get back to you within 24 hours to confirm availability and discuss the details of your visit.</p>
                 <form id="booking-form" class="booking-form" data-skip="1"
-                      action="https://formsubmit.co/cordobawineexperiences@gmail.com"
+                      action="https://api.web3forms.com/submit"
                       method="POST">
-                    <input type="hidden" name="_subject"  value="New inquiry — Wine Experience in Córdoba">
-                    <input type="hidden" name="_captcha"  value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="text"   name="_honey"    style="display:none" tabindex="-1" autocomplete="off">
+                    <input type="hidden" name="access_key" value="08ae0c93-cb74-44f3-a6b3-fc0d26b321ce">
+                    <input type="hidden" name="subject" value="New inquiry — Wine Experience in Córdoba">
+                    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1">
 
                     <div class="form-row">
                         <div class="ff">
@@ -1201,7 +1200,7 @@ footer p {
     const btn    = document.getElementById('submit-btn');
     const msgBox = document.getElementById('form-msg');
 
-    form.addEventListener('submit_disabled', async function (e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const orig   = btn.innerHTML;
         btn.disabled = true;
